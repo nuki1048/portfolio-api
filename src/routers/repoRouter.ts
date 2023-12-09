@@ -12,6 +12,6 @@ const router = Router();
 router.route('/').get(getAllRepos);
 router.route('/:slug').get(checkSlug, getSingleRepo);
 
-router.route('/:slug/:fileName').get(getRepoFile);
+router.route('/:slug/:fileName').get(checkSlug, getRepoFile);
 
 export default router;

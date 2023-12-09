@@ -11,9 +11,7 @@ url = url
   .replace('USERNAME', process.env.DATABASE_USERNAME)
   .replace('PASSWORD', process.env.DATABASE_PASSWORD);
 
-const octokit = new Octokit({
-  auth: process.env.GITHUB_API_TOKEN,
-});
+const octokit = new Octokit({});
 
 mongoose.connect(`${url}/repositories`);
 

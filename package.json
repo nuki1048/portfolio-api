@@ -8,7 +8,7 @@
     "lint": "yarn eslint --fix --format compact --ignore-pattern '/src/tests/*'",
     "prettier": "prettier --write .",
     "start:dev": "nodemon -exec 'ts-node' src/server.ts",
-    "start:prod": "SET NODE_ENV='production'; tsc && node dist/server.js",
+    "start:prod": " tsc && node dist/server.js",
     "scripts:import": "ts-node src/scripts/importBlacklist",
     "scripts:drop": "ts-node src/scripts/dropBlacklist"
   },

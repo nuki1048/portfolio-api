@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Octokit } from 'octokit';
+import { Repository } from '../models/repositoryModel';
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_API_TOKEN,
@@ -10,10 +11,16 @@ export const getAllRepos = async (req: Request, res: Response) => {
       username: process.env.GITHUB_USER_NAME,
     });
 
+    const blacklist = await Repository.find({});
+
+    const filteredRepos = repos.data.filter(
+      (repo) => !blacklist.some((black) => black.name === repo.name),
+    );
+
     res.status(200).json({
       status: 'success',
       data: {
-        repos: repos.data,
+        repos: filteredRepos,
       },
     });
   } catch (error) {

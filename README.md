@@ -17,7 +17,7 @@ This is a Node.js application built with Express, TypeScript, and Mongoose. It u
 1. Clone the repository
 2. Install dependencies with `npm install`
 3. Create a `.env` file in the root directory and set the necessary environment variables (see below)
-4. Start the server with `npm start`
+4. Start the server with `npm dev`
 
 ## Environment Variables
 
