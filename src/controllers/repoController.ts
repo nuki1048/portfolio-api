@@ -28,7 +28,7 @@ export const getAllRepos = async (req: Request, res: Response) => {
 
 export const getSingleRepo = async (
   req: Request<{ slug: string }>,
-  res: Response
+  res: Response,
 ) => {
   const { slug } = req.params;
   try {
@@ -55,7 +55,7 @@ export const getSingleRepo = async (
 
 export const getRepoFile = async (
   req: Request<{ slug: string; fileName: string }>,
-  res: Response
+  res: Response,
 ) => {
   const { fileName, slug } = req.params;
 
@@ -66,7 +66,7 @@ export const getRepoFile = async (
         owner: 'nuki1048',
         repo: slug,
         path: fileName,
-      }
+      },
     );
 
     res.status(200).json({

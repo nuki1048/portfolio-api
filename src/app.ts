@@ -12,7 +12,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json());
-
 app.use('/api/v1/repo', repoRouter);
 app.use('/api/v1/blacklist', blacklistRouter);
 

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "yarn run start:dev",
     "lint": "yarn eslint --fix --format compact --ignore-pattern '/src/tests/*'",
+    "prettier": "prettier --write .",
     "start:dev": "nodemon -exec 'ts-node' src/server.ts",
     "start:prod": "SET NODE_ENV='production'; tsc && node dist/server.js",
     "scripts:import": "ts-node src/scripts/importBlacklist",

@@ -4,10 +4,11 @@ interface RequestParams {
   slug?: string;
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export const checkSlug = (
   req: Request<RequestParams>,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   if (!req.params.slug || req.params.slug.length === 1) {
     return res.status(400).json({
