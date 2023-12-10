@@ -13,8 +13,8 @@ export const getAllRepos = async (req: Request, res: Response) => {
 
     const blacklist = await Repository.find({});
 
-    const filteredRepos = repos.data.filter(
-      (repo) => !blacklist.some((black) => black.name === repo.name),
+    const filteredRepos = repos.data.filter((repo) =>
+      blacklist.some((black) => black.name === repo.name && black.show),
     );
 
     res.status(200).json({

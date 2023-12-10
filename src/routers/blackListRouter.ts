@@ -3,12 +3,12 @@ import {
   postItem,
   getBlackList,
   getSingleItem,
-  deleteItem,
+  updateItem,
 } from '../controllers/blackListContoller';
 
 const router = Router();
 
 router.route('/').get(getBlackList).post(postItem);
-router.route('/:slug').get(getSingleItem).delete(deleteItem);
+router.route('/:slug').get(getSingleItem).patch(updateItem);
 
 export default router;

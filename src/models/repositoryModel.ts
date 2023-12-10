@@ -2,6 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 export interface IRepository {
   name: string;
+  show: boolean;
 }
 
 const repositorySchema = new Schema<IRepository>(
@@ -10,6 +11,10 @@ const repositorySchema = new Schema<IRepository>(
       type: String,
       required: [true, 'Repository must have a name'],
       unique: true,
+    },
+    show: {
+      type: Boolean,
+      default: false,
     },
   },
   { collection: 'blacklist' },

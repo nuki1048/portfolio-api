@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 8000;
 const url = getUrl();
 
 mongoose
-  .connect(`${url}/repositories`)
+  .connect(`${url}/${process.env.NODE_ENV}`)
   .then(() => console.log('Connection to database active✅'))
   .catch(() => console.log('Connection to database failed❌'));
 

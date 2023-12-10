@@ -49,17 +49,17 @@ export const getSingleItem = async (
   }
 };
 
-export const deleteItem = async (
-  req: Request<SingleItemParams>,
+export const updateItem = async (
+  req: Request<SingleItemParams, object, IRepository>,
   res: Response,
 ) => {
   const { slug } = req.params;
   try {
-    await Repository.findOneAndDelete({ name: slug });
+    const data = await Repository.findOneAndUpdate({ name: slug }, req.body);
 
-    res.status(204).json({
+    res.status(200).json({
       status: 'success',
-      data: {},
+      data: { data },
     });
   } catch (error) {
     res.status(400).json({

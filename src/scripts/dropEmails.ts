@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import { Repository } from '../models/repositoryModel';
+import Email from '../models/emailModel';
 
 dotenv.config({ path: './config.env' });
 
@@ -14,7 +14,7 @@ mongoose.connect(`${url}/${process.env.NODE_ENV}`);
 
 const dropCollection = async () => {
   try {
-    await Repository.collection.drop();
+    await Email.collection.drop();
 
     // eslint-disable-next-line no-console
     console.log('Blacklist collection successfully dropped✅');

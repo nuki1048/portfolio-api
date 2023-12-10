@@ -13,7 +13,7 @@ url = url
 
 const octokit = new Octokit({});
 
-mongoose.connect(`${url}/repositories`);
+mongoose.connect(`${url}/${process.env.NODE_ENV}`);
 
 const getData = async () => {
   const repos = await octokit.request('GET /users/{username}/repos', {
@@ -27,6 +27,7 @@ const getRepositoriesList = async () => {
   const data = await getData();
   return data.map((item) => ({
     name: item.name,
+    show: false,
   }));
 };
 

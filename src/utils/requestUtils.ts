@@ -13,12 +13,27 @@ export const checkSlug = async (
 ) => {
   const { slug } = req.params;
   const data = await Repository.find({ name: slug });
-  if (data.length === 0) {
+  if (data[0].show) {
     next();
   } else {
     return res.status(404).json({
       status: 'fail',
       message: 'Repository must not be on blacklist.',
+    });
+  }
+};
+
+export const checkBody = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  if (req.body) {
+    next();
+  } else {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Body must not be empty.',
     });
   }
 };
