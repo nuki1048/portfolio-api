@@ -5,10 +5,11 @@ import {
   getSingleItem,
   updateItem,
 } from '../controllers/blackListContoller';
+import { checkBody } from '../utils/requestUtils';
 
 const router = Router();
 
-router.route('/').get(getBlackList).post(postItem);
-router.route('/:slug').get(getSingleItem).patch(updateItem);
+router.route('/').get(getBlackList).post(checkBody, postItem);
+router.route('/:slug').get(getSingleItem).patch(checkBody, updateItem);
 
 export default router;
