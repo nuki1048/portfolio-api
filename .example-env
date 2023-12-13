@@ -16,3 +16,4 @@ DATABASE_URL=your_database_url
 # Email Service Provider Credentials
 EMAIL_PROVIDER_PASSWORD=your_email_provider_password
 EMAIL_PROVIDER_USERNAME=your_email_provider_username
+JWT_SECRET = secret_key;

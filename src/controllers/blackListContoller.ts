@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Request as JWTRequest } from 'express-jwt';
 import { IRepository, Repository } from '../models/repositoryModel';
 
 interface SingleItemParams {
   slug: string;
 }
 
-export const getBlackList = async (req: Request, res: Response) => {
+export const getBlackList = async (req: JWTRequest, res: Response) => {
   try {
     const repositories = await Repository.find();
 
@@ -71,10 +73,8 @@ export const updateItem = async (
   }
 };
 
-export const postItem = async (
-  req: Request<object, object, IRepository>,
-  res: Response,
-) => {
+export const postItem = async (req: JWTRequest, res: Response) => {
+  if (!req.auth.admin) return res.sendStatus(401);
   try {
     const repository = await Repository.create(req.body);
 

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Email from '../models/emailModel';
 
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './.env' });
 
 let url = process.env.DATABASE_URL;
 

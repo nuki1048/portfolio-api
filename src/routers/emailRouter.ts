@@ -7,14 +7,15 @@ import {
   deleteEmail,
 } from '../controllers/emailController';
 import { checkBody } from '../utils/requestUtils';
+import { checkAuth } from '../utils/authUitls';
 
 const router = Router();
 
-router.route('/').post(checkBody, createEmail).get(getAllEmails);
+router.route('/').post(checkBody, createEmail).get(checkAuth, getAllEmails);
 router
   .route('/:id')
-  .get(getEmail)
-  .patch(checkBody, updateEmail)
-  .delete(deleteEmail);
+  .get(checkAuth, getEmail)
+  .patch(checkAuth, checkBody, updateEmail)
+  .delete(checkAuth, deleteEmail);
 
 export default router;

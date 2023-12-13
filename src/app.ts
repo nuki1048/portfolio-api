@@ -2,9 +2,9 @@ import express from 'express';
 import type { Express } from 'express';
 import morgan from 'morgan';
 
-import repoRouter from './routers/repoRouter';
-import blacklistRouter from './routers/blackListRouter';
-import emailRouter from './routers/emailRouter';
+import authRouter from './routers/authRouter';
+import apiRouter from './routers/apiRouter';
+import { auth, checkAuth } from './utils/authUitls';
 
 const app: Express = express();
 
@@ -14,8 +14,8 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json());
 
-app.use('/api/v1/repo', repoRouter);
-app.use('/api/v1/blacklist', blacklistRouter);
-app.use('/api/v1/email', emailRouter);
+app.use('/api/v1', auth, checkAuth, apiRouter);
+
+app.use('/auth', authRouter);
 
 export default app;

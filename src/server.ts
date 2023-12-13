@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 import dotenv from 'dotenv';
-
+// eslint-disable-next-line import/no-extraneous-dependencies
 // eslint-disable-next-line import/first
 import mongoose from 'mongoose';
 import app from './app';
 
 import { getUrl } from './utils/stringUtils';
 
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './.env' });
 
 const PORT = process.env.PORT || 8000;
 

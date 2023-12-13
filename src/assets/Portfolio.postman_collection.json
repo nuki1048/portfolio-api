@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "52ba2705-0b7f-40df-b63f-dcd17070d16e",
+		"name": "Portfolio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29101186"
+	},
+	"item": [
+		{
+			"name": "Repositories",
+			"item": [
+				{
+					"name": "Get All Repositories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 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",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8000/api/v1/repo/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Repository",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/repo/nextjs-e-commerce-app"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blacklist",
+			"item": [
+				{
+					"name": "Get Blacklist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/blacklist"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/repo/react-delivery-app"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Single Item",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"show\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/v1/blacklist/react-delivery-app"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"art-gallery-app\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/v1/blacklist/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Emails",
+			"item": [
+				{
+					"name": "Create New Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":[\"chabaniuk.nik@gmail.com\",\"nik456618@gmail.com\"],\r\n    \"message\":\"Hello there\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/v1/email/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/email/65758e674847478f54f636df"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Emails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/email/"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Single Email",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\":\"answered\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/v1/email/65758e674847478f54f636df"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Single Email",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8000/api/v1/email/65758e674847478f54f636df"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
