@@ -62,6 +62,8 @@ To run a script, use the command `yarn run SCRIPT_NAME`.
 - `GET /api/v1/email/:id`: Fetch a single email from the database
 - `PATCH /api/v1/email/:id`: Update a single email
 - `DELETE /api/v1/email/:id`: Remove a single email from the database
+- `POST /api/v1/info/`: Add a new section with message and slug
+- `GET /api/v1/info/:slug`: Fetch a single section from the database
 
 ## License
 
