@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/indent */
 import { Request, Response } from 'express';
 import Experience, { IExperience } from '../models/experienceModel';
-import { catchAsync } from '../utils/catchAsync';
 
 export const getAllExperience = async (req: Request, res: Response) => {
   const experience = await Experience.find();
@@ -12,10 +11,6 @@ export const getAllExperience = async (req: Request, res: Response) => {
       experience,
     },
   });
-};
-
-export const getSingleExperience = async (req: Request, res: Response) => {
-  // TODO: IMPLEMENT
 };
 
 export const createNewExperience = async (
