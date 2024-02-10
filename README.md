@@ -64,6 +64,10 @@ To run a script, use the command `yarn run SCRIPT_NAME`.
 - `DELETE /api/v1/email/:id`: Remove a single email from the database
 - `POST /api/v1/info/`: Add a new section with message and slug
 - `GET /api/v1/info/:slug`: Fetch a single section from the database
+- `GET /api/v1/experience`: Get all existed experience developer
+- `POST /api/v1/experience`: Create a new experience
+- `PATCH /api/v1/experience/:id`: Update existed experience
+- `DELETE /api/v1/experience/:id`: Delete single experience
 
 ## License
 
