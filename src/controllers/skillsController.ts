@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import Skill, { ISkill } from '../models/skillsModel';
 
 export const getAllSkills = async (req: Request, res: Response) => {
-  const skills = await Skill.find();
+  const skills = await Skill.find().select('-_id');
 
   res
     .status(200)
@@ -20,5 +20,19 @@ export const createNewSkill = async (
     data: {
       skill,
     },
+  });
+};
+
+export const deleteSkill = async (
+  req: Request<{ slug: string }>,
+  res: Response,
+) => {
+  const { slug } = req.params;
+
+  await Skill.findOneAndDelete({ slug });
+
+  res.status(204).json({
+    status: 'success',
+    data: null,
   });
 };

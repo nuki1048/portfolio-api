@@ -34,10 +34,6 @@ const skillSchema = new Schema<ISkill>(
       required: false,
       unique: true,
     },
-    _id: {
-      type: Schema.Types.ObjectId,
-      select: false,
-    },
     __v: {
       type: Number,
       select: false,
