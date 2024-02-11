@@ -1,4 +1,7 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, {
+  CallbackWithoutResultAndOptionalError as MongooseNextFunction,
+  Schema,
+} from 'mongoose';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import slugify from 'slugify';
 
@@ -42,15 +45,11 @@ const skillSchema = new Schema<ISkill>(
   { collection: 'skills' },
 );
 
-skillSchema.pre(
-  'save',
-  function (next: mongoose.CallbackWithoutResultAndOptionalError) {
-    const slug = slugify(this.name, { lower: true });
-
-    this.slug = slug;
-    next();
-  },
-);
+skillSchema.pre('save', function (next: MongooseNextFunction) {
+  const slug = slugify(this.name, { lower: true });
+  this.slug = slug;
+  next();
+});
 
 const Skill = mongoose.model('Skill', skillSchema);
 

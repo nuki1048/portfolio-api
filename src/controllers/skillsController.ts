@@ -36,3 +36,25 @@ export const deleteSkill = async (
     data: null,
   });
 };
+
+export const updateSkill = async (
+  req: Request<{ slug: string }, object, Partial<ISkill>>,
+  res: Response,
+) => {
+  const { slug } = req.params;
+  const { icon, name } = req.body;
+
+  const skill = await Skill.findOne({ slug }, {}, { returnOriginal: false });
+
+  skill.name = name ?? skill.name;
+  skill.icon = icon ?? skill.icon;
+
+  skill.save();
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      skill,
+    },
+  });
+};
