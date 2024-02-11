@@ -12,7 +12,7 @@ export const getAllRepos = async (req: Request, res: Response) => {
     });
 
     const blacklist = await Repository.find({});
-
+    // TODO: Transform this logic in REPO model
     const filteredRepos = repos.data.filter((repo) =>
       blacklist.some((black) => black.name === repo.name && black.show),
     );

@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { getAllSkills } from '../controllers/skillController';
+import { createNewSkill, getAllSkills } from '../controllers/skillsController';
 
 const router = Router();
 
-router.route('/').get(getAllSkills);
+router.route('/').get(getAllSkills).post(createNewSkill);
 
 export default router;
