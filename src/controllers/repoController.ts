@@ -1,6 +1,10 @@
 import { Request, Response } from 'express';
 import { Octokit } from 'octokit';
+// eslint-disable-next-line import/no-extraneous-dependencies, node/no-missing-import
+import { OctokitResponse } from '@octokit/types';
+// eslint-disable-next-line import/no-extraneous-dependencies, node/no-missing-import
 import { Repository } from '../models/repositoryModel';
+import { Repos } from '../types/types';
 
 const octokit = new Octokit({
   auth: process.env.GITHUB_API_TOKEN,
@@ -12,13 +16,14 @@ export const getAllRepos = async (req: Request, res: Response) => {
     });
 
     const blacklist = await Repository.find({});
-    // TODO: Transform this logic in REPO model
-    const filteredRepos = repos.data.filter((repo) =>
-      blacklist.some((black) => black.name === repo.name && black.show),
+    const filteredRepos = Repository.filterRepos(
+      repos as OctokitResponse<Repos[], 200>,
+      blacklist,
     );
 
     res.status(200).json({
       status: 'success',
+      length: filteredRepos.length,
       data: {
         repos: filteredRepos,
       },
