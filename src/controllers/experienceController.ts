@@ -1,50 +1,20 @@
 /* eslint-disable @typescript-eslint/indent */
-import { Request, Response } from 'express';
-import Experience, { IExperience } from '../models/experienceModel';
+import { Model } from 'mongoose';
+import Experience from '../models/experienceModel';
+import * as handlerFactory from './handlerFactory';
 
-export const getAllExperience = async (req: Request, res: Response) => {
-  const experience = await Experience.find();
+export const getAllExperience = handlerFactory.getAllDocuments(
+  Experience as unknown as Model<unknown>,
+);
 
-  res.status(200).json({
-    status: 'success',
-    data: {
-      experience,
-    },
-  });
-};
+export const createNewExperience = handlerFactory.createOne(
+  Experience as unknown as Model<unknown>,
+);
 
-export const createNewExperience = async (
-  req: Request<object, object, IExperience>,
-  res: Response,
-) => {
-  const newExperience = await Experience.create(req.body);
+export const updateExperience = handlerFactory.updateOneDocument(
+  Experience as unknown as Model<unknown>,
+);
 
-  res.status(201).json({
-    status: 'success',
-    data: {
-      experience: newExperience,
-    },
-  });
-};
-
-export const updateExperience = async (
-  req: Request<{ id: string }, object, Partial<IExperience>>,
-  res: Response,
-) => {
-  const experience = await Experience.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { runValidators: true, returnOriginal: false },
-  );
-
-  res.status(200).json({ status: 'success', data: { experience } });
-};
-
-export const deleteExperience = async (
-  req: Request<{ id: string }>,
-  res: Response,
-) => {
-  await Experience.findByIdAndDelete(req.params.id);
-
-  res.status(204).json({ status: 'success', data: null });
-};
+export const deleteExperience = handlerFactory.deleteOneDocument(
+  Experience as unknown as Model<unknown>,
+);
