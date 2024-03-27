@@ -1,11 +1,11 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 export interface IInfo {
   message: string;
   slug: string;
 }
 
-const infoSchema = new Schema<IInfo>(
+const infoSchema = new mongoose.Schema<IInfo>(
   {
     message: {
       required: true,
