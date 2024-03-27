@@ -45,3 +45,12 @@ export const updateReview = async (
 
   res.status(200).json({ status: 'success', data: { review } });
 };
+
+export const deleteReview = async (
+  req: Request<{ id: string }>,
+  res: Response,
+) => {
+  await Review.findByIdAndDelete(req.params.id);
+
+  res.status(204).json({ status: 'success', data: null });
+};
