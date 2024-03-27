@@ -33,3 +33,15 @@ export const createNewReview = async (
     },
   });
 };
+
+export const updateReview = async (
+  req: Request<{ id: string }, object, Partial<IReview>>,
+  res: Response,
+) => {
+  const review = await Review.findByIdAndUpdate(req.params.id, req.body, {
+    runValidators: true,
+    returnOriginal: false,
+  });
+
+  res.status(200).json({ status: 'success', data: { review } });
+};
