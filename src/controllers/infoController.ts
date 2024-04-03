@@ -27,6 +27,10 @@ export const getSingleSection = async (
   }
 };
 
+export const getAllSections = handlerFactory.getAllDocuments(
+  Info as unknown as Model<unknown>,
+);
+
 export const createNewSection = handlerFactory.createOne(
   Info as unknown as Model<unknown>,
 );
