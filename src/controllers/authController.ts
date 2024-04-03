@@ -1,6 +1,13 @@
-import { Request, Response } from 'express';
+/* eslint-disable @typescript-eslint/indent */
+import { NextFunction, Request, Response } from 'express';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as jwt from 'jsonwebtoken';
+import { AppError } from '../utils/appError';
+
+export enum UserRoles {
+  User = 'user',
+  Admin = 'admin',
+}
 
 // eslint-disable-next-line import/prefer-default-export
 export const getLogin = (req: Request, res: Response) => {
@@ -11,3 +18,16 @@ export const getLogin = (req: Request, res: Response) => {
     res.status(500).json({ status: 'fail', message: err.message });
   }
 };
+
+export const restrictTo =
+  (...roles: UserRoles[]) =>
+  (req: Request, res: Response, next: NextFunction) => {
+    const isUserHavePermission = roles.includes(req.user.role as UserRoles);
+    if (!isUserHavePermission) {
+      return next(
+        new AppError('You do not have permission to perform this action', 403),
+      );
+    }
+
+    return next();
+  };

@@ -7,15 +7,18 @@ import {
   deleteEmail,
 } from '../controllers/emailController';
 import { checkBody } from '../utils/requestUtils';
-import { checkAuth } from '../utils/authUitls';
+import { UserRoles, restrictTo } from '../controllers/authController';
 
 const router = Router();
 
-router.route('/').post(checkBody, createEmail).get(checkAuth, getAllEmails);
+router
+  .route('/')
+  .post(checkBody, createEmail)
+  .get(restrictTo(UserRoles.Admin), getAllEmails);
 router
   .route('/:id')
-  .get(checkAuth, getEmail)
-  .patch(checkAuth, checkBody, updateEmail)
-  .delete(checkAuth, deleteEmail);
+  .get(restrictTo(UserRoles.Admin), getEmail)
+  .patch(restrictTo(UserRoles.Admin), checkBody, updateEmail)
+  .delete(restrictTo(UserRoles.Admin), deleteEmail);
 
 export default router;

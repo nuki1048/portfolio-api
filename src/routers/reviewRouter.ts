@@ -5,11 +5,15 @@ import {
   getAllReviews,
   updateReview,
 } from '../controllers/reviewController';
+import { UserRoles, restrictTo } from '../controllers/authController';
 
 const router = Router();
 
 router.route('/').get(getAllReviews).post(createNewReview);
 
-router.route('/:id').patch(updateReview).delete(deleteReview);
+router
+  .route('/:id')
+  .patch(restrictTo(UserRoles.Admin), updateReview)
+  .delete(restrictTo(UserRoles.Admin), deleteReview);
 
 export default router;
