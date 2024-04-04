@@ -21,15 +21,12 @@ export const getLogin = (req: Request, res: Response) => {
 
 export const restrictTo =
   (...roles: UserRoles[]) =>
-  (req: Request, res: Response, next: NextFunction) => {
-    const isUserHavePermission = roles.includes(
-      req.user.role as unknown as any,
-    );
-    if (!isUserHavePermission) {
-      return next(
-        new AppError('You do not have permission to perform this action', 403),
-      );
-    }
-
-    return next();
-  };
+  (req: Request, res: Response, next: NextFunction) =>
+    // const isUserHavePermission = roles.includes([]);
+    // if (!isUserHavePermission) {
+    //   return next(
+    //     new AppError('You do not have permission to perform this action', 403),
+    //   );
+    // }
+    // TODO: MAKE IT WORK AFTER AUTH
+    next();
