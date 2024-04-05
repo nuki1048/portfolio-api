@@ -18,8 +18,8 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'portfolio_api',
-    format: async (req, file) => 'jpg', // supports promises as well
-    public_id: (req, file) => 'portfolio_app_${}',
+    format: async (req, file) => 'png', // supports promises as well
+    public_id: (req, file) => `portfolio_app_${file.originalname}`,
   },
 });
 // eslint-disable-next-line import/prefer-default-export
