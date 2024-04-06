@@ -8,17 +8,17 @@ import {
 } from '../controllers/blackListController';
 import { checkBody } from '../utils/requestUtils';
 import { checkAuth } from '../utils/authUitls';
-import { UserRoles, restrictTo } from '../controllers/authController';
+import { UserRoles, protect, restrictTo } from '../controllers/authController';
 
 const router = Router();
 
 router
   .route('/')
   .get(getBlackList)
-  .post(restrictTo(UserRoles.Admin), checkBody, postItem);
+  .post(protect, restrictTo(UserRoles.Admin), checkBody, postItem);
 router
   .route('/:slug')
   .get(checkAuth, getSingleItem)
-  .patch(restrictTo(UserRoles.Admin), checkBody, updateItem);
+  .patch(protect, restrictTo(UserRoles.Admin), checkBody, updateItem);
 
 export default router;

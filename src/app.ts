@@ -6,6 +6,7 @@ import authRouter from './routers/authRouter';
 import apiRouter from './routers/apiRouter';
 // import { auth, checkAuth } from './utils/authUitls';
 import { AppError } from './utils/appError';
+import { errorHandler } from './controllers/errorHandler';
 
 const app: Express = express();
 
@@ -22,5 +23,7 @@ app.use('/auth', authRouter);
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
+
+app.use(errorHandler);
 
 export default app;

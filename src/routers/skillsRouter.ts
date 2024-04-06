@@ -5,18 +5,18 @@ import {
   getAllSkills,
   updateSkill,
 } from '../controllers/skillsController';
-import { UserRoles, restrictTo } from '../controllers/authController';
+import { UserRoles, protect, restrictTo } from '../controllers/authController';
 
 const router = Router();
 
 router
   .route('/')
   .get(getAllSkills)
-  .post(restrictTo(UserRoles.Admin), createNewSkill);
+  .post(protect, restrictTo(UserRoles.Admin), createNewSkill);
 
 router
   .route('/:slug')
-  .delete(restrictTo(UserRoles.Admin), deleteSkill)
-  .patch(updateSkill);
+  .delete(protect, restrictTo(UserRoles.Admin), deleteSkill)
+  .patch(protect, restrictTo(UserRoles.Admin), updateSkill);
 
 export default router;
