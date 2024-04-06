@@ -13,6 +13,8 @@
     "scripts:import": "ts-node src/scripts/importBlacklist",
     "scripts:drop:blacklist": "ts-node src/scripts/dropBlacklist",
     "scripts:drop:emails": "ts-node src/scripts/dropEmails",
+    "prepare": "husky install",
+    "build": "yarn tsc",
     "scripts:drop": "concurrently --names \"BLACKLIST,EMAILS\" -c \"bgBlue.bold,bgMagenta.bold\"  \"yarn scripts:drop:blacklist\" \"yarn scripts:drop:emails\"",
     "start": "yarn start:prod",
     "build": "tsc",
@@ -20,17 +22,6 @@
     "add-build": "git add dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "vercel-build": "echo hello"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,js}": "eslint --cache --fix",
-    "*.{ts,js,css,md}": "prettier --write",
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
   },
   "husky": {
     "hooks": {
