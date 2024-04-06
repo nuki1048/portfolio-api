@@ -7,7 +7,6 @@ import {
   updateItem,
 } from '../controllers/blackListController';
 import { checkBody } from '../utils/requestUtils';
-import { checkAuth } from '../utils/authUitls';
 import { UserRoles, protect, restrictTo } from '../controllers/authController';
 
 const router = Router();
@@ -18,7 +17,7 @@ router
   .post(protect, restrictTo(UserRoles.Admin), checkBody, postItem);
 router
   .route('/:slug')
-  .get(checkAuth, getSingleItem)
+  .get(protect, getSingleItem)
   .patch(protect, restrictTo(UserRoles.Admin), checkBody, updateItem);
 
 export default router;
