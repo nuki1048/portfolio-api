@@ -5,7 +5,7 @@ import {
   getBlackList,
   getSingleItem,
   updateItem,
-} from '../controllers/blackListContoller';
+} from '../controllers/blackListController';
 import { checkBody } from '../utils/requestUtils';
 import { checkAuth } from '../utils/authUitls';
 import { UserRoles, restrictTo } from '../controllers/authController';

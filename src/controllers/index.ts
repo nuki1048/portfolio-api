@@ -1,0 +1,10 @@
+export * as authController from './authController';
+export * as blacklistController from './blackListController';
+export * as emailController from './emailController';
+export * as experienceController from './experienceController';
+export * as fileController from './fileController';
+export * as infoController from './infoController';
+export * as repoController from './repoController';
+export * as reviewController from './reviewController';
+export * as skillsController from './skillsController';
+export * as userController from './userController';
