@@ -1,19 +1,20 @@
 import { Router } from 'express';
 import {
+  checkStatus,
   createNewReview,
   deleteReview,
   getAllReviews,
   updateReview,
 } from '../controllers/reviewController';
-import { UserRoles, restrictTo } from '../controllers/authController';
+import { UserRoles, protect, restrictTo } from '../controllers/authController';
 
 const router = Router();
 
-router.route('/').get(getAllReviews).post(createNewReview);
+router.route('/').get(getAllReviews).post(checkStatus, createNewReview);
 
 router
   .route('/:id')
-  .patch(restrictTo(UserRoles.Admin), updateReview)
-  .delete(restrictTo(UserRoles.Admin), deleteReview);
+  .patch(protect, restrictTo(UserRoles.Admin), updateReview)
+  .delete(protect, restrictTo(UserRoles.Admin), deleteReview);
 
 export default router;
