@@ -12,7 +12,6 @@ import apiRouter from './routers/apiRouter';
 import { AppError } from './utils/appError';
 import { errorHandler } from './controllers/errorHandler';
 import { getUrl } from './utils/stringUtils';
-import { corsOptions } from './utils/corsUtils';
 
 dotenv.config({ path: './.env' });
 
@@ -33,17 +32,15 @@ app.use(helmet());
 
 app.use(express.json());
 
-app.use('/api/v1', cors(corsOptions), apiRouter);
+app.options('*', cors());
+
+app.use('/api/v1', apiRouter);
 
 app.use('/auth', authRouter);
 
-app.all(
-  '*',
-  cors(corsOptions),
-  (req: Request, res: Response, next: NextFunction) => {
-    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-  },
-);
+app.all('*', (req: Request, res: Response, next: NextFunction) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
 
 app.use(errorHandler);
 

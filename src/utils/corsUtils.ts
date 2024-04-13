@@ -1,4 +1,4 @@
-const whitelist = ['http://example1.com', 'http://example2.com'];
+const whitelist = ['https://portfolio-api-fawn.vercel.app', 'localhost:4000'];
 
 // eslint-disable-next-line import/prefer-default-export
 export const corsOptions = {
