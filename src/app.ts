@@ -28,7 +28,7 @@ mongoose
   .then(() => console.log('Connection to database active✅'))
   .catch(() => console.log('Connection to database failed❌'));
 
-app.use(helmet());
+app.use(helmet({ crossOriginResourcePolicy: false }));
 
 app.use(express.json());
 
