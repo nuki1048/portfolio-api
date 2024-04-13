@@ -9,10 +9,7 @@ import { UserRoles, protect, restrictTo } from '../controllers/authController';
 
 const router = Router();
 
-router
-  .route('/')
-  .get(getAllSkills)
-  .post(protect, restrictTo(UserRoles.Admin), createNewSkill);
+router.route('/').get(getAllSkills).post(createNewSkill);
 
 router
   .route('/:slug')

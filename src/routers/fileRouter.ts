@@ -12,14 +12,7 @@ const TEN_MB = 10000000;
 
 const parser = multer({ storage: storage, limits: { fileSize: TEN_MB } });
 
-router
-  .route('/upload')
-  .post(
-    protect,
-    restrictTo(UserRoles.Admin),
-    parser.single('image'),
-    uploadPhoto,
-  );
+router.route('/upload').post(parser.single('image'), uploadPhoto);
 router
   .route('/delete/:fileId')
   .delete(protect, restrictTo(UserRoles.Admin), deletePhoto);

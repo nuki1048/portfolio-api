@@ -8,6 +8,9 @@
 import { File } from 'buffer';
 import { v2 as cloudinary } from 'cloudinary';
 import { Request } from 'express';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: './.env' });
 
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
