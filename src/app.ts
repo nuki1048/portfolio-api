@@ -2,7 +2,7 @@
 import express from 'express';
 import type { Express, NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
-
+import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
@@ -12,6 +12,7 @@ import apiRouter from './routers/apiRouter';
 import { AppError } from './utils/appError';
 import { errorHandler } from './controllers/errorHandler';
 import { getUrl } from './utils/stringUtils';
+import { corsOptions } from './utils/corsUtils';
 
 dotenv.config({ path: './.env' });
 
@@ -32,13 +33,17 @@ app.use(helmet());
 
 app.use(express.json());
 
-app.use('/api/v1', apiRouter);
+app.use('/api/v1', cors(corsOptions), apiRouter);
 
 app.use('/auth', authRouter);
 
-app.all('*', (req: Request, res: Response, next: NextFunction) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-});
+app.all(
+  '*',
+  cors(corsOptions),
+  (req: Request, res: Response, next: NextFunction) => {
+    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+  },
+);
 
 app.use(errorHandler);
 
