@@ -32,7 +32,7 @@ app.use(helmet({ crossOriginResourcePolicy: false }));
 
 app.use(express.json());
 
-app.options('*', cors());
+app.use(cors());
 
 app.use('/api/v1', apiRouter);
 
