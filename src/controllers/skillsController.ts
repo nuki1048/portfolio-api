@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { Model } from 'mongoose';
 import Skill, { ISkill } from '../models/skillsModel';
-import * as handlerFactory from './handlerFactory';
+import { catchAsync } from '../utils/catchAsync';
 
 export const getAllSkills = async (req: Request, res: Response) => {
   const skills = await Skill.find().select('-_id');
@@ -11,10 +10,20 @@ export const getAllSkills = async (req: Request, res: Response) => {
     .json({ status: 'success', length: skills.length, data: { skills } });
 };
 
-export const createNewSkill = handlerFactory.updateOneDocument(
-  Skill as unknown as Model<unknown>,
-);
+export const createNewSkill = catchAsync(
+  async (req: Request<object, object, ISkill>, res: Response) => {
+    const skill = await Skill.create({
+      name: req.body.name,
+      slug: req.body.slug,
+      icon: req.file.path,
+    });
 
+    res.status(200).json({
+      status: 'success',
+      data: { skill },
+    });
+  },
+);
 export const deleteSkill = async (
   req: Request<{ slug: string }>,
   res: Response,

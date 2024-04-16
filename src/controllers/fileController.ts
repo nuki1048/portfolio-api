@@ -1,6 +1,14 @@
 import { Request, Response } from 'express';
 import { v2 as cloudinary } from 'cloudinary';
+import multer from 'multer';
+import { storage } from '../storage/storage';
 import { catchAsync } from '../utils/catchAsync';
+
+const TEN_MB = 10000000;
+
+const parser = multer({ storage: storage, limits: { fileSize: TEN_MB } });
+
+export const prepareUpload = (name: string = 'image') => parser.single(name);
 
 // eslint-disable-next-line import/prefer-default-export
 export const uploadPhoto = (req: Request, res: Response) => {
