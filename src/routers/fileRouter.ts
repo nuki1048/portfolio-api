@@ -10,7 +10,7 @@ import { UserRoles, protect, restrictTo } from '../controllers/authController';
 
 const router = Router();
 
-router.route('/upload').post(prepareUpload, uploadPhoto);
+router.route('/upload').post(prepareUpload('image'), uploadPhoto);
 router
   .route('/delete/:fileId')
   .delete(protect, restrictTo(UserRoles.Admin), deletePhoto);
